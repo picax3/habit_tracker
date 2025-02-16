@@ -12,7 +12,7 @@ class Habit:
 
 def track_habit(name: str, start: datetime, cost: float, minutes_used: float, difficulty: int) -> Habit:
     goal: int = 60
-    hourly_wage: int = 30
+    hourly_wage: int = 13.353
 
     # convert timestamp into hours/days
     time_elapsed: float = (datetime.now() - start).total_seconds()
@@ -25,7 +25,7 @@ def track_habit(name: str, start: datetime, cost: float, minutes_used: float, di
     # random bonus details
     money_saved: float = cost * days
     minutes_used: float = round(days * minutes_used)
-    total_money_saved: str = f'$({round(money_saved + (minutes_used / 60 * hourly_wage),2)})'
+    total_money_saved: str = f'$({round(money_saved + ((minutes_used / days)/ 60 * hourly_wage),2)})'
 
     # amount of days remaining until you break a habit
     days_to_go: float | str = round(goal - days)
