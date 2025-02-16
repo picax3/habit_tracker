@@ -6,10 +6,11 @@ class Habit:
     name: str
     time_since: str
     remaining_days: str
-    minutes_saved: float
+    #minutes_saved: float
+    reward_points: int
     money_saved: str
 
-def track_habit(name: str, start: datetime, cost: float, minutes_used: float) -> Habit:
+def track_habit(name: str, start: datetime, cost: float, minutes_used: float, difficulty: int) -> Habit:
     goal: int = 60
     hourly_wage: int = 30
 
@@ -17,6 +18,9 @@ def track_habit(name: str, start: datetime, cost: float, minutes_used: float) ->
     time_elapsed: float = (datetime.now() - start).total_seconds()
     hours: float = round(time_elapsed / 60 / 60, 1)
     days: float = round(hours / 24, 2)
+
+    # reward points calculation based on difficulty and days
+    reward_points: int = difficulty * days
 
     # random bonus details
     money_saved: float = cost * days
@@ -34,5 +38,6 @@ def track_habit(name: str, start: datetime, cost: float, minutes_used: float) ->
     return Habit(name=name,
                  time_since=time_since,
                  remaining_days=remaining_days,
-                 minutes_saved=minutes_used,
+                 #minutes_saved=minutes_used,
+                 reward_points=reward_points,
                  money_saved=total_money_saved)
